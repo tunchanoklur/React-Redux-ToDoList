@@ -8,7 +8,7 @@ function Header() {
     <AppBar position="static" color="primary">
         <Toolbar>
           <Typography variant="h4" color="inherit">
-            To do list
+            To do list (React-Redux)
           </Typography>
         </Toolbar>
     </AppBar>
