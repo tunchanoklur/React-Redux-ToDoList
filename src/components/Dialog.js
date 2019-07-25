@@ -5,35 +5,45 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import grey from '@material-ui/core/colors/grey';
 
-export default function FormDialog(props) {
-  return (
-    <div>
-      <Button variant="outlined" color="primary" onClick={props.ClickOpen}>
-        Add To Do List
+export default class FormDialog extends React.Component {
+  constructor(props){
+    super(props)
+    this.state ={
+      color: grey[900]
+    }
+  }
+  
+  render(){
+    return (
+      <div>
+        <Button variant="outlined" color={this.color} onClick={this.props.ClickOpen}>
+          Add To Do List
         </Button>
-      <Dialog open={props.show_dialog} onClose={props.ClickClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">{props.method} to do list</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            type="text"
-            fullWidth
-            onChange={props.UpdateForm}
-            value={props.form.text}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={props.ClickAdd} color="primary">
-            {props.method}
-          </Button>
-          <Button onClick={props.ClickClose} color="primary">
-            Cancel
+        <Dialog open={this.props.show_dialog} onClose={this.props.ClickClose} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">{this.props.method} to do list</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              type="text"
+              fullWidth
+              onChange={this.props.UpdateForm}
+              value={this.props.form.text}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.props.ClickAdd} color={this.color}>
+              {this.props.method}
             </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
+            <Button onClick={this.props.ClickClose} color={this.color}>
+              Cancel
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
 }
