@@ -1,8 +1,9 @@
 import React from 'react';
 import TodoCard from './TodoCard'
 import Grid from '@material-ui/core/Grid';
+import {connect} from 'react-redux' //to connect component to store
 
-export default class TodoList extends React.Component {
+class TodoList extends React.Component {
   render(){
     return (
       <div>
@@ -13,11 +14,6 @@ export default class TodoList extends React.Component {
                     <Grid item xs={12} key={id}>
                         <TodoCard 
                             id={id}
-                            text={list.text}
-                            done={list.done}
-                            UpdateStatus={this.props.UpdateStatus}
-                            ClickDelete={this.props.ClickDelete}
-                            ClickEdit={this.props.ClickEdit}
                         />
                     </Grid>
                 )
@@ -27,3 +23,11 @@ export default class TodoList extends React.Component {
     );
   }
 }
+
+const StateToProps = (state/*from store*/)=>{
+    return{
+        lists: state.lists //update to this component
+    }
+}
+export default connect(StateToProps)(TodoList)
+//connect is a function return higher order component(HOC) and that HOC will receive TodoList as argument
